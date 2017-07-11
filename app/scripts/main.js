@@ -79,7 +79,7 @@
   app.cloneBacon = (function() {
     const button = document.getElementById('more-bacon');
     const bacon = document.querySelector('.bacon-img');
-    const container = bacon.parentNode;
+    const container = bacon ? bacon.parentNode : false;
 
     const init = function() {
       if (button && bacon && container) {
