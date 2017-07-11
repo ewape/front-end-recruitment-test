@@ -73,4 +73,29 @@
   }
 
   // Your custom JavaScript goes here
+
+  const app = {} || app;
+
+  app.cloneBacon = (function() {
+    const button = document.getElementById('more-bacon');
+    const bacon = document.querySelector('.bacon-img');
+    const container = bacon.parentNode;
+
+    const init = function() {
+      if (button && bacon && container) {
+        button.addEventListener('click', function() {
+          const baconClone = bacon.cloneNode(true);
+          container.appendChild(baconClone);
+        });
+      } else {
+        console.error('Missing button, bacon or container element');
+      }
+    };
+
+    return {
+      init: init
+    };
+  })();
+
+  app.cloneBacon.init();
 })();
