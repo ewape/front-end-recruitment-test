@@ -1,0 +1,94 @@
+input {
+    &:focus {
+        outline: 0;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+}
+
+select {
+  &[disabled] {
+    opacity: 0.4;
+  }
+}
+
+.form-disabled{
+  .mdl-menu__container {
+    display: none;
+  }
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+%btn-base {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0 none;
+    border-radius: 0;
+    font-family: $font-1;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:active,
+    &:focus,
+    &:hover {
+        outline: 0;
+    }
+}
+
+.form-row {
+    position: relative;
+
+    &.checkbox-styled {
+        margin: .5rem 0;
+    }
+}
+
+.form-label {
+    color: $form-label;
+    font-family: $font-1;
+    display: block;
+    font-weight: 700;
+}
+
+.form-input {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+    padding: .5rem 0 0;
+    width: 100%;
+    font-family: $font-1;
+    line-height: 1.4;
+    font-size: 1.2rem;
+    background-color: transparent;
+}
+
+.field-error {
+
+  .form-label {
+    color: $error;
+  }
+}
+
+.form-submit-success {
+  .form-label {
+    color: $success;
+  }
+}
+
+.form-required {
+    color: $error;
+    font-weight: bold;
+}
+
+.required-mark {
+    color: $error;
+}

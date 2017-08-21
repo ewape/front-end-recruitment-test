@@ -17,6 +17,7 @@
  *
  */
 /* eslint-env browser */
+
 (function() {
   'use strict';
 
@@ -76,15 +77,15 @@
 
   const app = {} || app;
 
-  app.cloneBacon = (function() {
+  app.cloneBacon = (() => {
     const button = document.getElementById('more-bacon');
     const bacon = document.querySelector('.bacon-img');
     const container = bacon ? bacon.parentNode : false;
 
-    const init = function() {
+    const init = () => {
       if (button && bacon && container) {
-        button.addEventListener('click', function() {
-          const baconClone = bacon.cloneNode(true);
+        button.addEventListener('click', () => {
+          let baconClone = bacon.cloneNode(true);
           container.appendChild(baconClone);
         });
       } else {
@@ -97,5 +98,113 @@
     };
   })();
 
+  app.formValidate = (() => {
+    const formSelector = '.checkout-form';
+    const inputSelector = '.form-input';
+    const fieldErrorClass = 'field-error';
+    const messageSelector = '.form-submit-message';
+    const errorMessage = 'Please fill all required fields to place order.';
+    const successMessage = 'Thank you for placing your order!';
+    const formSubmittedSuccessClass = 'form-submit-success';
+    const formSubmittedErrorClass = 'form-submit-error';
+    const formDisabledClass = 'form-disabled';
+
+    const form = document.querySelector(formSelector);
+    const submitMessage = document.querySelector(messageSelector);
+
+    const getFieldContainer = field => {
+      return document.querySelector('[for="' + field.id + '"]').parentNode;
+    };
+
+    const showFieldError = field => {
+      getFieldContainer(field).classList.add(fieldErrorClass);
+    };
+
+    const hideFieldError = field => {
+      getFieldContainer(field).classList.remove(fieldErrorClass);
+    };
+
+    const fieldValid = field => {
+      const isValid = field.value.trim().length > 0;
+
+      if (isValid) {
+        hideFieldError(field);
+      } else {
+        showFieldError(field);
+      }
+      return isValid;
+    };
+
+    const setFormMessage = options => {
+      if (form) {
+        if (submitMessage) {
+          submitMessage.innerHTML = `<p>${options.message}</p>`;
+          if (options.submit) {
+            document.body.classList.remove(formSubmittedErrorClass);
+            document.body.classList.add(formSubmittedSuccessClass);
+          } else {
+            document.body.classList.add(formSubmittedErrorClass);
+          }
+        }
+      }
+    };
+
+    const disableForm = formFields => {
+      if (form) {
+        form.classList.add(formDisabledClass);
+        if (!Array.isArray(formFields)) {
+          formFields = Array.prototype.slice.call(formFields, null);
+        }
+        formFields.map(field => {
+          field.disabled = true;
+        });
+      }
+    };
+
+    const formValid = () => {
+      if (form) {
+        const formFieldsArray = Array.prototype.slice.call((form.querySelectorAll(inputSelector)), null);
+        const fieldsValid = formFieldsArray.filter(fieldValid);
+        const formValid = fieldsValid.length === formFieldsArray.length;
+
+        if (formValid) {
+          disableForm(formFieldsArray);
+        }
+
+        return formValid;
+      }
+    };
+
+    const formSubmit = () => {
+      if (form) {
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const isValid = formValid();
+
+          if (isValid) {
+            setFormMessage({
+              message: successMessage,
+              submit: true
+            });
+          } else {
+            setFormMessage({
+              message: errorMessage,
+              submit: false
+            });
+          }
+        });
+      }
+    };
+
+    const init = () => {
+      formSubmit();
+    };
+
+    return {
+      init: init
+    };
+  })();
+
   app.cloneBacon.init();
+  app.formValidate.init();
 })();

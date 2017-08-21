@@ -1,0 +1,9 @@
+.desktop-col-2 {
+  @media (min-width: $desktop-sm) {
+    display: flex;
+    justify-content: space-between;
+    .column {
+      width: calc(50% - 7px);
+    }
+  }
+}

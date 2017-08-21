@@ -1,0 +1,279 @@
+.mdl-demo .mdl-layout__tab-panel {
+    &#checkout {
+        background-color: $checkout-bg;
+    }
+}
+
+.btn-checkout {
+    @extend %btn-base;
+    padding: 20px;
+    white-space: nowrap;
+    width: 100%;
+    background-color: $checkout-btn-bg;
+    color: #fff;
+    border-radius: $border-radius;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    box-shadow: 0 2px darken($checkout-btn-bg, 10%);
+    transition: background-color .25s linear;
+    position: relative;
+    overflow: hidden;
+
+    .btn-text {
+      position: relative;
+
+      .material-icons {
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 5px;
+        font-size: 18px;
+      }
+    }
+}
+
+.checkout {
+    background-color: $checkout-bg;
+
+    * {
+        box-sizing: border-box;
+    }
+    h1, h2 {
+        text-transform: uppercase;
+        color: $main-color;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .form-item {
+      background-color: #fff;
+      padding: $gutter-sm 10px;
+      margin-bottom: 20px;
+      border-radius: $border-radius;
+      box-shadow: 0 2px $checkout-border;
+
+      .mdl-selectfield {
+        padding: 0;
+        width: 100%;
+
+        &.is-focused, &:focus, &:active {
+          outline: 0;
+        }
+
+        .form-label {
+          font-size: 14px;
+        }
+      }
+
+      .mdl-menu__container, .mdl-menu__outline {
+        min-width: 100%;
+      }
+
+      .mdl-menu {
+        right: 0;
+      }
+
+      &.field-error {
+        box-shadow: 0 2px $error, 0 0 0 1px $error;
+      }
+    }
+
+    .section--center {
+      @media (max-width: $mobile) {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .order-summary {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .form-credit-card {
+        background-image: url(../images/visa-icon.png);
+        background-repeat: no-repeat;
+        background-position: right 10px bottom 20px;
+    }
+
+    .mdl-js-selectfield {
+      .material-icons {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .mdl-selectfield__select {
+        -webkit-appearance: none;
+        border: 0 none;
+        outline: 0;
+        padding: .5rem 0 0;
+        background-color: transparent;
+      }
+    }
+}
+
+.order-summary {
+  background-color: #fff;
+  color: $main-color;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  padding: $gutter-sm;
+  box-shadow: 0 2px $checkout-border;
+  border-radius: $border-radius;
+
+
+  h2 {
+    color: $checkout-heading;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 18px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0 0 14px;
+    margin: 14px 0;
+  }
+
+  li {
+    @extend %order-summary-list-item;
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+  }
+
+
+  .order-summary-value, .order-summary-total-value {
+    white-space: nowrap;
+  }
+
+}
+
+.order-summary-inner {
+  border: 1px dashed $checkout-border;
+  border-radius: $border-radius;
+  padding: 15px;
+}
+
+.order-summary-list {
+  border-bottom: 1px dashed $checkout-border;
+  padding-bottom: 14px;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $gutter-sm;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.order-summary-total {
+  @extend %order-summary-list-item;
+  font-size: 12px;
+}
+
+.order-summary-total-value {
+  font-size: 24px;
+}
+
+.checkout-heading {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    color: $checkout-heading;
+    white-space: nowrap;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    .material-icons {
+      color: $form-label;
+      font-size: 14px;
+      margin-left: $gutter-sm;
+    }
+
+    &:before {
+      color: #fff;
+      background-color: $checkout-heading;
+      border-radius: 50%;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      margin-right: 1rem;
+    }
+
+    &:nth-of-type(1) {
+      &:before {
+        content: '1'
+      }
+    }
+
+    &:nth-of-type(2) {
+      &:before {
+        content: '2'
+      }
+    }
+
+    @media (min-width: $desktop-sm + 100px) {
+      position: relative;
+
+      &:before {
+        position: absolute;
+        right: 100%;
+        top: 0;
+      }
+    }
+}
+
+.form-submit-message {
+  color: $main-color;
+  color: #fff;
+  background-color: $success;
+  margin-top: 1rem;
+  border-radius: $border-radius;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+
+  p {
+    padding: 24px 14px;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .form-submit-success &, .form-submit-error & {
+    animation-name: slideDown;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+  }
+
+  .form-submit-error & {
+    background-color: $error;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

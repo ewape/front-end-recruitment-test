@@ -1,0 +1,24 @@
+$font-1: "Roboto", "Helvetica", "Arial", sans-serif;
+
+$main-color: #000;
+$border-radius: 4px;
+
+$error: #db4437;
+$success: #4caf50;
+
+$form-label: #616161;
+$form-disabled: #d0d0d0;
+
+$checkout-bg: #f2f2f2;
+$checkout-heading: #000;
+$checkout-border: lighten($form-label, 40%);
+$checkout-btn-bg: #6dd321;
+
+
+// breakpoints
+
+$mobile: 480px;
+$tablet: 768px;
+$desktop-sm: 840px; // mdl breakpoint
+
+$gutter-sm: 7px;
